@@ -1,2 +1,3 @@
 rootProject.name = 'spring5-gradle'
+include 'chap02'
 
