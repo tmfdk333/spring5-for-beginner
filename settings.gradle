@@ -1,3 +1,4 @@
-rootProject.name = 'spring5-gradle'
-include 'chap02'
+rootProject.name = 'spring5-for-beginner'
 
+include 'chap02'
+include 'chap03'
