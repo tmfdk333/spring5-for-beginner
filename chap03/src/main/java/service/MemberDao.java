@@ -1,5 +1,6 @@
 package service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import vo.Member;
@@ -20,5 +21,9 @@ public class MemberDao {
 
 	public void update(Member member) {
 		mapDatabase.put(member.getEmail(), member);
+	}
+
+	public Collection<Member> selectAll() {
+		return mapDatabase.values();
 	}
 }

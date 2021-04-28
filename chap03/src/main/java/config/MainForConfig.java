@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import printer.MemberInfoPrinter;
+import printer.VersionPrinter;
 import service.MemberChangePasswordService;
+import printer.MemberListPrinter;
 import service.MemberRegisterService;
 import vo.RegisterRequest;
 
@@ -16,7 +19,9 @@ public class MainForConfig {
 	private static ApplicationContext atx = null;
 
 	public static void main(String[] args) throws IOException {
-		atx = new AnnotationConfigApplicationContext(AppCtx.class);
+//		atx = new AnnotationConfigApplicationContext(AppCtx.class);
+//		atx = new AnnotationConfigApplicationContext(AppCtx1.class, AppCtx2.class);
+		atx = new AnnotationConfigApplicationContext(AppCtxImport2.class);
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
@@ -33,6 +38,15 @@ public class MainForConfig {
 				continue;
 			} else if (command.startsWith("change ")) {
 				processChangeCommand(command.split(" "));
+				continue;
+			} else if (command.trim().equals("list")) {
+				processListCommand();
+				continue;
+			} else if (command.startsWith("info ")) {
+				processInfoCommand(command.split(" "));
+				continue;
+			} else if (command.trim().equals("version")) {
+				processVersionCommand();
 				continue;
 			}
 			printHelp();
@@ -83,12 +97,34 @@ public class MainForConfig {
 		}
 	}
 
+	private static void processListCommand() {
+		MemberListPrinter memberListPrinter = atx.getBean("memberListPrinter", MemberListPrinter.class);
+		memberListPrinter.printAll();
+	}
+
+	private static void processInfoCommand(String[] arg) {
+		if (arg.length != 2) {
+			// printHelp();
+			return;
+		}
+		MemberInfoPrinter memberInfoPrinter = atx.getBean("memberInfoPrinter", MemberInfoPrinter.class);
+		memberInfoPrinter.printInfo(arg[1]);
+	}
+
+	private static void processVersionCommand() {
+		VersionPrinter versionPrinter = atx.getBean("versionPrinter", VersionPrinter.class);
+		versionPrinter.printVersion();
+	}
+
 	private static void printHelp() {
 		System.out.println();
 		System.out.println("잘못된 명령입니다. 아래 명령어 사용법을 확인하세요");
 		System.out.println("명령어 사용법: ");
 		System.out.println("new 이메일 이름 암호 암호확인");
 		System.out.println("change 이메일 현재비밀번호 변경비밀번호");
+		System.out.println("list");
+		System.out.println("info 이메일");
+		System.out.println("version");
 		System.out.println();
 	}
 }

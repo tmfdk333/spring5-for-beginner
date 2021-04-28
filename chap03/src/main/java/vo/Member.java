@@ -50,7 +50,7 @@ public class Member {
 		this.name = name;
 	}
 
-	public LocalDateTime getLocalDateTime() {
+	public LocalDateTime getRegisterDateTime() {
 		return localDateTime;
 	}
 
