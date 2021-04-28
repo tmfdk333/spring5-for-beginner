@@ -38,7 +38,7 @@ public class MainForAssembler {
 
 	private static void processNewCommand(String[] arg) {
 		if (arg.length != 5) {
-			// printHelp();
+			printHelp();
 			return;
 		}
 		RegisterRequest registerRequest = new RegisterRequest();
@@ -64,7 +64,7 @@ public class MainForAssembler {
 
 	private static void processChangeCommand(String[] arg) {
 		if (arg.length != 4) {
-			// printHelp();
+			printHelp();
 			return;
 		}
 

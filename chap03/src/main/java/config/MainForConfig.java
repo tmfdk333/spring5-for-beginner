@@ -55,7 +55,7 @@ public class MainForConfig {
 
 	private static void processNewCommand(String[] arg) {
 		if (arg.length != 5) {
-			// printHelp();
+			printHelp();
 			return;
 		}
 		RegisterRequest registerRequest = new RegisterRequest();
@@ -81,7 +81,7 @@ public class MainForConfig {
 
 	private static void processChangeCommand(String[] arg) {
 		if (arg.length != 4) {
-			// printHelp();
+			printHelp();
 			return;
 		}
 
@@ -104,7 +104,7 @@ public class MainForConfig {
 
 	private static void processInfoCommand(String[] arg) {
 		if (arg.length != 2) {
-			// printHelp();
+			printHelp();
 			return;
 		}
 		MemberInfoPrinter memberInfoPrinter = atx.getBean("memberInfoPrinter", MemberInfoPrinter.class);
